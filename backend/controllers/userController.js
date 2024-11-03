@@ -26,6 +26,7 @@ exports.createUser = async (req, res) => {
 		res.status(201).json({ user: newUser.rows[0], token });
 	} catch (err) {
 		console.error(err.message);
+		res.status(500).send("Server error");
 	}
 };
 exports.loginUser = async (req, res) => {
@@ -47,5 +48,26 @@ exports.loginUser = async (req, res) => {
 		res.json({ token });
 	} catch (err) {
 		console.error(err.message);
+		res.status(500).send("Server error");
+	}
+};
+
+exports.isVerified = async (req, res) => {
+	try {
+		res.json(true);
+	} catch (err) {
+		console.error(err.message);
+		res.status(500).send("Server error");
+	}
+};
+
+exports.userDashboard = async (req, res) => {
+	try {
+		// res.json(req.user);
+		const user = await pool.query("SELECT user_name FROM users WHERE user_id = $1", [req.user]);
+		res.json(user.rows[0]);
+	} catch (err) {
+		console.error(err.message);
+		res.status(500).send("Server error");
 	}
 };
