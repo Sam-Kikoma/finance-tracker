@@ -9,7 +9,7 @@ app.use(cors());
 app.use(express.json());
 
 // Use the user routes for /api/users endpoints
-app.use("/api/users", userRouter);
+app.use("/api/auth", userRouter);
 
 app.listen(PORT, () => {
 	console.log(`Server running on ${PORT}`);
