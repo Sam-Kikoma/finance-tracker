@@ -8,7 +8,6 @@ const PORT = 3000;
 app.use(cors());
 app.use(express.json());
 
-// Use the user routes for /api/users endpoints
 app.use("/api/auth", userRouter);
 
 app.listen(PORT, () => {
