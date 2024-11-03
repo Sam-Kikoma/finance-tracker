@@ -1,0 +1,22 @@
+{
+	"name": "backend",
+	"version": "1.0.0",
+	"description": "A RESTful API backend for a web application, built with Node.js and Express for user authentication and data handling.",
+	"main": "server.js",
+	"scripts": {
+		"test": "echo \"Error: no test specified\" && exit 1",
+		"start": "node server.js",
+		"dev": "nodemon server.js"
+	},
+	"author": "Samson Kikoma",
+	"license": "ISC",
+	"dependencies": {
+		"cors": "^2.8.5",
+		"express": "^4.21.1",
+		"pg": "^8.13.1"
+	},
+	"devDependencies": {
+		"dotenv": "^16.4.5",
+		"nodemon": "^3.1.7"
+	}
+}
