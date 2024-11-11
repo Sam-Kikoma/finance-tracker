@@ -11,5 +11,8 @@ userRouter.post("/login", validInfo, userController.loginUser);
 userRouter.get("/isVerified", authorization, userController.isVerified);
 //Dashboard
 userRouter.get("/dashboard", authorization, userController.userDashboard);
+//User transactions
+userRouter.get("/transactions", authorization, userController.userTransactions);
+//User budgets
 
 module.exports = userRouter;
