@@ -71,3 +71,17 @@ exports.userDashboard = async (req, res) => {
 		res.status(500).send("Server error");
 	}
 };
+
+exports.userTransactions = async (req, res) => {
+	try {
+		const user = await pool.query(
+			"SELECT * FROM users AS u LEFT JOIN transactions AS t ON u.user_id = t.user_id WHERE u.user_id = $1",
+			[req.user]
+		);
+		res.json(user.rows);
+		console.table(user.rows);
+	} catch (err) {
+		console.error(err.message);
+		res.status(500).send("Server error");
+	}
+};
