@@ -39,3 +39,22 @@ INSERT INTO transactions (user_id, amount, category, transaction_type, transacti
 ('6109d600-15e7-45dd-a5b9-464041d9a229', 200.00, 'Rent', 'expense', '2024-11-05'),
 ('6109d600-15e7-45dd-a5b9-464041d9a229', 100.00, 'Investments', 'income', '2024-11-06'),
 ('6109d600-15e7-45dd-a5b9-464041d9a229', 50.00, 'Utilities', 'expense', '2024-11-07');
+
+-- Budgets for Sam (user_id: 72e8f362-d138-43a0-94f4-fa95235f65c0)
+INSERT INTO budgets (user_id, category, budget_amount, start_date, end_date) VALUES
+('72e8f362-d138-43a0-94f4-fa95235f65c0', 'Groceries', 400.00, '2024-11-01', '2024-11-30'),
+('72e8f362-d138-43a0-94f4-fa95235f65c0', 'Dining', 150.00, '2024-11-01', '2024-11-30'),
+('72e8f362-d138-43a0-94f4-fa95235f65c0', 'Entertainment', 100.00, '2024-11-01', '2024-11-30'),
+('72e8f362-d138-43a0-94f4-fa95235f65c0', 'Utilities', 200.00, '2024-11-01', '2024-11-30');
+
+-- Budgets for June (user_id: 6109d600-15e7-45dd-a5b9-464041d9a229)
+INSERT INTO budgets (user_id, category, budget_amount, start_date, end_date) VALUES
+('6109d600-15e7-45dd-a5b9-464041d9a229', 'Rent', 1000.00, '2024-11-01', '2024-11-30'),
+('6109d600-15e7-45dd-a5b9-464041d9a229', 'Groceries', 300.00, '2024-11-01', '2024-11-30'),
+('6109d600-15e7-45dd-a5b9-464041d9a229', 'Transport', 100.00, '2024-11-01', '2024-11-30'),
+('6109d600-15e7-45dd-a5b9-464041d9a229', 'Health', 50.00, '2024-11-01', '2024-11-30');
+
+
+-- Update to users table
+ALTER TABLE users
+ADD CONSTRAINT unique_email UNIQUE (user_email);
