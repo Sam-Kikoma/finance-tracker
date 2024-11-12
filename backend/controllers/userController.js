@@ -2,7 +2,7 @@ const bcrypt = require("bcrypt");
 const pool = require("../db");
 const jwtGenerator = require("../utils/jwtGenerator");
 
-// Create user
+// User controllers
 exports.createUser = async (req, res) => {
 	try {
 		// 1.Destructure request
@@ -71,7 +71,7 @@ exports.userDashboard = async (req, res) => {
 		res.status(500).send("Server error");
 	}
 };
-
+// Transactions controllers
 exports.userTransactions = async (req, res) => {
 	try {
 		const user = await pool.query(
@@ -85,3 +85,26 @@ exports.userTransactions = async (req, res) => {
 		res.status(500).send("Server error");
 	}
 };
+//Create transaction
+//Update transaction
+//Delete a transaction
+
+//Budget Controllers
+//Create budget
+//Update budget
+//Delete budget
+exports.userBudgets = async (req, res) => {
+	try {
+		const user = await pool.query(
+			"SELECT * FROM users AS u LEFT JOIN budgets AS b ON u.user_id = b.user_id WHERE u.user_id = $1",
+			[req.user]
+		);
+		res.json(user.rows);
+		console.table(user.rows);
+	} catch (err) {
+		console.error(err.message);
+		res.status(500).send("Server error");
+	}
+};
+
+//
