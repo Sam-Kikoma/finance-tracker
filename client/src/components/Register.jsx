@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { useOutletContext } from "react-router-dom";
+import { useOutletContext, Link } from "react-router-dom";
 
 const Register = () => {
 	const { setAuth } = useOutletContext();
@@ -40,6 +40,7 @@ const Register = () => {
 						className="input input-bordered w-full max-w-xs"
 						value={name}
 						onChange={(e) => onChange(e)}
+						required
 					/>
 					<input
 						type="email"
@@ -48,6 +49,7 @@ const Register = () => {
 						className="input input-bordered w-full max-w-xs"
 						value={email}
 						onChange={(e) => onChange(e)}
+						required
 					/>
 					<input
 						type="password"
@@ -56,9 +58,11 @@ const Register = () => {
 						className="input input-bordered w-full max-w-xs"
 						value={password}
 						onChange={(e) => onChange(e)}
+						required
 					/>
 					<button>Submit</button>
 				</form>
+				<Link to="/login">Login</Link>
 			</div>
 		</div>
 	);
