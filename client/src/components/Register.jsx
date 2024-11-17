@@ -1,6 +1,8 @@
 import { useState } from "react";
+import { useOutletContext } from "react-router-dom";
 
 const Register = () => {
+	const { setAuth } = useOutletContext();
 	const [inputs, setInputs] = useState({
 		name: "",
 		email: "",
@@ -13,8 +15,15 @@ const Register = () => {
 	const onSubmitForm = async (e) => {
 		e.preventDefault();
 		try {
-			// Continue from here
-			const res = await fetch("http://localhost");
+			const body = { email, password, name };
+			const res = await fetch("http://localhost:3000/api/auth/register", {
+				method: "POST",
+				headers: { "Content-Type": "application/json" },
+				body: JSON.stringify(body),
+			});
+			const parseRes = await res.json();
+			localStorage.setItem("token", parseRes.token);
+			setAuth(true);
 		} catch (err) {
 			console.error(err.message);
 		}
@@ -48,8 +57,8 @@ const Register = () => {
 						value={password}
 						onChange={(e) => onChange(e)}
 					/>
+					<button>Submit</button>
 				</form>
-				<button>Submit</button>
 			</div>
 		</div>
 	);
