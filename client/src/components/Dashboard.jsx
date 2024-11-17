@@ -1,4 +1,5 @@
 const Dashboard = () => {
+	// Start here
 	return <div>Dashboard</div>;
 };
 
