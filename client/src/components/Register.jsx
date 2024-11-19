@@ -1,5 +1,6 @@
 import { useState } from "react";
 import { useOutletContext, Link } from "react-router-dom";
+import { toast } from "react-toastify";
 
 const Register = () => {
 	const { setAuth } = useOutletContext();
@@ -24,8 +25,9 @@ const Register = () => {
 			const parseRes = await res.json();
 			localStorage.setItem("token", parseRes.token);
 			setAuth(true);
+			toast.success("Account was created");
 		} catch (err) {
-			console.error(err.message);
+			toast.error(err.message);
 		}
 	};
 	return (
