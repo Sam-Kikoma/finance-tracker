@@ -10,9 +10,11 @@ const Register = () => {
 		password: "",
 	});
 	const { name, email, password } = inputs;
+
 	const onChange = (e) => {
 		setInputs({ ...inputs, [e.target.name]: e.target.value });
 	};
+
 	const onSubmitForm = async (e) => {
 		e.preventDefault();
 		try {
@@ -30,41 +32,76 @@ const Register = () => {
 			toast.error(err.message);
 		}
 	};
+
 	return (
-		<div className="flex items-center justify-center min-h-screen">
-			<div className="w-max h-auto flex flex-col gap-4 items-center justify-center">
-				<h1>Register</h1>
-				<form className="flex flex-col gap-4 items-center" onSubmit={onSubmitForm}>
-					<input
-						type="text"
-						name="name"
-						placeholder="Enter your name"
-						className="input input-bordered w-full max-w-xs"
-						value={name}
-						onChange={(e) => onChange(e)}
-						required
-					/>
-					<input
-						type="email"
-						name="email"
-						placeholder="Enter your email"
-						className="input input-bordered w-full max-w-xs"
-						value={email}
-						onChange={(e) => onChange(e)}
-						required
-					/>
-					<input
-						type="password"
-						name="password"
-						placeholder="Enter your password"
-						className="input input-bordered w-full max-w-xs"
-						value={password}
-						onChange={(e) => onChange(e)}
-						required
-					/>
-					<button>Submit</button>
+		<div className="flex min-h-screen items-center justify-center bg-gray-50">
+			<div className="bg-white p-8 rounded-xl shadow-md w-full max-w-sm">
+				<h1 className="text-2xl font-bold text-center mb-6 text-gray-900">Register</h1>
+				<form className="space-y-6" onSubmit={onSubmitForm}>
+					{/* Name Input */}
+					<div className="flex flex-col">
+						<label htmlFor="name" className="mb-1 font-semibold text-gray-800">
+							Name
+						</label>
+						<input
+							type="text"
+							name="name"
+							placeholder="Enter your name"
+							className="border-b-2 border-gray-300 bg-transparent text-gray-800 focus:outline-none focus:border-blue-500 transition duration-300"
+							value={name}
+							onChange={onChange}
+							required
+						/>
+					</div>
+
+					{/* Email Input */}
+					<div className="flex flex-col">
+						<label htmlFor="email" className="mb-1 font-semibold text-gray-800">
+							Email
+						</label>
+						<input
+							type="email"
+							name="email"
+							placeholder="Enter your email"
+							className="border-b-2 border-gray-300 bg-transparent text-gray-800 focus:outline-none focus:border-blue-500 transition duration-300"
+							value={email}
+							onChange={onChange}
+							required
+						/>
+					</div>
+
+					{/* Password Input */}
+					<div className="flex flex-col">
+						<label htmlFor="password" className="mb-1 font-semibold text-gray-800">
+							Password
+						</label>
+						<input
+							type="password"
+							name="password"
+							placeholder="Enter your password"
+							className="border-b-2 border-gray-300 bg-transparent text-gray-800 focus:outline-none focus:border-blue-500 transition duration-300"
+							value={password}
+							onChange={onChange}
+							required
+						/>
+					</div>
+
+					{/* Submit Button */}
+					<button
+						type="submit"
+						className="w-full bg-blue-500 hover:bg-blue-600 text-white py-2 rounded-lg font-medium transition duration-300"
+					>
+						Register
+					</button>
 				</form>
-				<Link to="/login">Login</Link>
+
+				{/* Login Link */}
+				<p className="text-center mt-4 text-gray-600">
+					Already have an account?{" "}
+					<Link to="/login" className="text-blue-500 hover:underline">
+						Login
+					</Link>
+				</p>
 			</div>
 		</div>
 	);
