@@ -1,6 +1,7 @@
 import { useOutletContext, Link } from "react-router-dom";
 import { toast } from "react-toastify";
 import { useState } from "react";
+import bgImg from "../assets/bgImg.png";
 
 const Login = () => {
 	const { setAuth } = useOutletContext();
@@ -9,9 +10,11 @@ const Login = () => {
 		password: "",
 	});
 	const { email, password } = inputs;
+
 	const onChange = (e) => {
 		setInputs({ ...inputs, [e.target.name]: e.target.value });
 	};
+
 	const onSubmit = async (e) => {
 		e.preventDefault();
 		try {
@@ -36,23 +39,64 @@ const Login = () => {
 	};
 
 	return (
-		<div className="flex items-center justify-center min-h-screen flex-col">
-			<div className="w-max h-auto">
-				<h1>Login</h1>
+		<div className="flex flex-col justify-center md:flex-row min-h-screen w-full bg-gray-50">
+			{/* Left image section */}
+			<div className="hidden md:flex md:w-1/2 bg-gray-200">
+				<img src={bgImg} alt="Background" className="h-auto object-contain max-w-full rounded-lg shadow-lg" />
 			</div>
-			<div>
-				<form className="flex flex-col" onSubmit={onSubmit}>
-					<input type="email" name="email" placeholder="Enter your email" value={email} onChange={(e) => onChange(e)} />
-					<input
-						type="password"
-						name="password"
-						placeholder="Enter your password"
-						value={password}
-						onChange={(e) => onChange(e)}
-					/>
-					<button>Submit</button>
-				</form>
-				<Link to="/register">Register</Link>
+
+			{/* Login form */}
+			<div className="flex w-full md:w-1/2 justify-center items-center p-6">
+				<div className="bg-white text-gray-800 p-8 rounded-xl shadow-md w-full max-w-sm mx-auto">
+					<h2 className="text-2xl font-bold text-center mb-6 text-gray-900">Login</h2>
+					<form className="space-y-6" onSubmit={onSubmit}>
+						{/* Email Input */}
+						<div className="flex flex-col">
+							<label htmlFor="email" className="mb-1 font-semibold">
+								Email
+							</label>
+							<input
+								type="email"
+								name="email"
+								value={email}
+								onChange={onChange}
+								className="border-b-2 border-gray-300 bg-transparent text-gray-800 focus:outline-none focus:border-blue-500 transition duration-300"
+								placeholder="Enter your email"
+							/>
+						</div>
+
+						{/* Password Input */}
+						<div className="flex flex-col">
+							<label htmlFor="password" className="mb-1 font-semibold">
+								Password
+							</label>
+							<input
+								type="password"
+								name="password"
+								value={password}
+								onChange={onChange}
+								className="border-b-2 border-gray-300 bg-transparent text-gray-800 focus:outline-none focus:border-blue-500 transition duration-300"
+								placeholder="Enter your password"
+							/>
+						</div>
+
+						{/* Submit Button */}
+						<button
+							type="submit"
+							className="w-full bg-blue-500 hover:bg-blue-600 text-white py-2 rounded-lg font-medium transition duration-300"
+						>
+							Login
+						</button>
+					</form>
+
+					{/* Register Link */}
+					<p className="text-center mt-4 text-gray-600">
+						Don&apos;t have an account?{" "}
+						<Link to="/register" className="text-blue-500 hover:underline">
+							Register
+						</Link>
+					</p>
+				</div>
 			</div>
 		</div>
 	);
