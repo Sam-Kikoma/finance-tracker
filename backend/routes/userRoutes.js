@@ -11,8 +11,14 @@ userRouter.post("/login", validInfo, userController.loginUser);
 userRouter.get("/isVerified", authorization, userController.isVerified);
 //Dashboard
 userRouter.get("/dashboard", authorization, userController.userDashboard);
-//Get User transactions
+//User transactions
 userRouter.get("/transactions", authorization, userController.userTransactions);
+userRouter.post("/newTransaction", authorization, userController.createTransaction);
+userRouter.put("/updateTransaction/:id", authorization, userController.updateTransaction);
+userRouter.delete("/deleteTransaction/:id", authorization, userController.deleteTransaction);
 //Get User budgets
 userRouter.get("/budgets", authorization, userController.userBudgets);
+userRouter.post("/newBudget", authorization, userController.createBudget);
+userRouter.put("/updateBudget/:id", authorization, userController.updateBudget);
+userRouter.delete("/deleteBudget/:id", authorization, userController.deleteBudget);
 module.exports = userRouter;
